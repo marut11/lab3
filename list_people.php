@@ -1,20 +1,29 @@
 <?php
 require("connect_db.php");
+$id = $_GET["id"];
 
-$sql = "SELECT id, name, age, gender, mary_status FROM marut";
+$sql = "SELECT ID, name, age, gender, maried_status FROM marut";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
-    if($row["gender"]=="M"){
-        if($row["age"]<15){
-            echo "ด.ช." . $row["name"] . "<br>";
+    if($row["Gender"]=="M"){
+        if($row["Age"]<15){
+                echo "ดช.", $row["Name"] . "<br>";
         }else{
-            echo "นาย" . $row["name"] . "<br>";
+                echo "นาย.", $row["Name"] . "<br>";
+        }
+    }
+    if($row["Gender"]=="F"){
+        if($row["Age"]<15){
+            echo "ดญ.", $row["Name"] . "<br>";
+        if($row["Maried_status"]=="M"){
+            echo "นาง.", $row["Name"] . "<br>";
         }
     }else{
-
+            echo "นางสาว.", $row["Name"] . "<br>";
+    }
     }
   }
 } else {
